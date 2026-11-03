@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>어서와, 자활은 처음이지?</title>
+<meta name="description" content="자활 신입 실무자 안내서 — 자활·국기초·회계·세무·노무·행정 낱말을 쉬운 말로, 자주 하는 업무 절차, 한 해 달력, 첫 주 체크리스트.">
+<meta property="og:title" content="어서와, 자활은 처음이지?">
+<meta property="og:description" content="자활 신입 실무자 안내서 — 어려운 말을 쉬운 말로, 절차는 순서대로.">
+<meta property="og:type" content="website">
+<style>
+:root{
+  --blue:#1A6EFF; --navy:#1A2B50; --green:#1F9D5C; --red:#D9534F;
+  --bg:#F4F7FC; --surface:#FFFFFF; --line:#D5DDEC; --soft:#EEF3FB;
+  --text:#1A2B50; --muted:#5B6885;
+  --amber:#8A5A00; --amber-bg:#FFF4D6; --amber-line:#E5B93C;
+  --mint-bg:#E9F7EF; --mint-line:#BFE6CF;
+  --font:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --blue:#6BA1FF; --navy:#9DB8F0; --green:#5CCB8F; --red:#FF7B76;
+    --bg:#0E1630; --surface:#17224A; --line:#2F3F73; --soft:#1C2D5E;
+    --text:#EAF0FF; --muted:#A9B6DA;
+    --amber:#FFD166; --amber-bg:#3A2F10; --amber-line:#8F7420;
+    --mint-bg:#143A2A; --mint-line:#2E6B4E;
+  }
+}
+*,*::before,*::after{box-sizing:border-box}
+html{font-size:17px}
+html.big{font-size:20px}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.65;word-break:keep-all;overflow-wrap:anywhere;-webkit-text-size-adjust:100%}
+a{color:var(--blue)}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.page{max-width:960px;margin:0 auto;padding:16px 16px 40px}
+header.top{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+header.top img{width:72px;height:auto;flex:none}
+h1{margin:0;font-size:1.6rem;line-height:1.25}
+.sub{margin:2px 0 0;color:var(--muted);font-size:.92rem}
+.top .tools{margin-left:auto;display:flex;gap:8px}
+.btn{min-height:44px;padding:0 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);font-weight:700;font-size:.9rem}
+.btn.main{background:var(--blue);border-color:var(--blue);color:#fff}
+nav.tabs{display:flex;gap:6px;margin:14px 0 0;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs button{flex:0 0 auto;min-height:44px;padding:0 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);font-weight:700;font-size:.92rem}
+nav.tabs button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+@media (prefers-color-scheme:dark){ nav.tabs button.on{background:var(--blue);border-color:var(--blue);color:#0E1630} }
+.view{display:none;margin-top:14px}
+.view.on{display:block}
+.notice{display:flex;gap:12px;align-items:flex-start;margin:14px 0 0;padding:12px 14px;border-radius:14px;background:var(--amber-bg);border:1.5px solid var(--amber-line);font-size:.92rem}
+.notice img{width:52px;flex:none}
+.notice p{margin:0}
+.notice b{color:var(--amber)}
+.search{display:flex;gap:8px;margin:0 0 10px}
+.search input{flex:1;min-height:48px;padding:8px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);font-size:1rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.chip{min-height:38px;padding:0 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);font-size:.86rem;font-weight:600}
+.chip.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.cnt{font-size:.85rem;color:var(--muted);margin:0 0 8px}
+.term{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;margin:0 0 8px}
+.term[open]{border-color:var(--blue)}
+.term>summary{list-style:none;cursor:pointer;display:flex;gap:10px;align-items:center;padding:12px 14px;font-weight:700;font-size:1rem}
+.term>summary::-webkit-details-marker{display:none}
+.term>summary .cat{flex:none;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--soft);color:var(--muted)}
+.term>summary .v{flex:none;font-size:.7rem;font-weight:700;padding:1px 7px;border-radius:999px;background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-line)}
+.term>summary::after{content:"＋";margin-left:auto;color:var(--blue);flex:none}
+.term[open]>summary::after{content:"－"}
+.tb{padding:0 14px 14px}
+.tb p{margin:0 0 8px}
+.tb .lab{display:block;font-size:.78rem;font-weight:800;color:var(--muted);margin:10px 0 2px;letter-spacing:.02em}
+.tb .mis{padding:8px 12px;border-radius:10px;background:var(--amber-bg);border:1px solid var(--amber-line);font-size:.92rem}
+.tb .ref{font-size:.82rem;color:var(--muted)}
+.tb a.lk{display:inline-block;margin-top:4px;font-size:.9rem}
+mark{background:#FFE88A;color:#1A2B50;padding:0 2px;border-radius:3px}
+.empty{padding:20px;text-align:center;color:var(--muted);background:var(--surface);border:1.5px dashed var(--line);border-radius:14px}
+/* 절차 */
+.proc{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;margin:0 0 10px}
+.proc[open]{border-color:var(--blue)}
+.proc>summary{list-style:none;cursor:pointer;padding:12px 14px;font-weight:700;font-size:1rem;display:flex;gap:10px;align-items:center}
+.proc>summary::-webkit-details-marker{display:none}
+.proc>summary::after{content:"＋";margin-left:auto;color:var(--blue)}
+.proc[open]>summary::after{content:"－"}
+.proc .meta{display:flex;flex-wrap:wrap;gap:6px 14px;padding:0 14px;font-size:.85rem;color:var(--muted)}
+.steps{list-style:none;margin:10px 0 0;padding:0 14px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:30px 1fr;gap:8px;padding:8px 0;border-top:1px dotted var(--line)}
+.steps li::before{counter-increment:s;content:counter(s);width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;font-weight:800;font-size:.85rem;display:grid;place-items:center;margin-top:2px}
+.steps b{display:block}
+.steps span{font-size:.92rem;color:var(--text)}
+.proc .warn{margin:10px 14px 14px;padding:8px 12px;border-radius:10px;background:var(--amber-bg);border:1px solid var(--amber-line);font-size:.9rem}
+/* 달력 */
+.cal{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.mon{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px}
+.mon.now{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,110,255,.12)}
+.mon.all{grid-column:1/-1;background:var(--mint-bg);border-color:var(--mint-line)}
+.mon h3{margin:0 0 6px;font-size:1.05rem}
+.mon ul{margin:0;padding:0;list-style:none}
+.mon li{display:grid;grid-template-columns:62px 1fr;gap:8px;padding:4px 0;font-size:.9rem;border-top:1px dotted var(--line)}
+.mon li b{color:var(--blue);font-size:.85rem}
+/* 첫 주 */
+.first{list-style:none;margin:0;padding:0}
+.first li{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;background:var(--surface);border:1.5px solid var(--line);border-radius:12px;margin:0 0 6px}
+.first li.done{opacity:.55}
+.first input{width:22px;height:22px;margin:3px 0 0;accent-color:var(--blue);flex:none}
+.first .g{font-size:.75rem;font-weight:800;color:var(--muted);margin-right:4px}
+.prog{height:10px;border-radius:5px;background:var(--line);overflow:hidden;margin:0 0 12px}
+.prog i{display:block;height:100%;width:0;background:var(--green)}
+/* 안내 */
+.about p,.about li{font-size:.95rem}
+.about ul{padding-left:1.2rem}
+footer{margin:28px 0 0;padding-top:12px;border-top:1.5px solid var(--line);color:var(--muted);font-size:.82rem}
+footer p{margin:2px 0}
+@media print{
+  @page{size:A4;margin:14mm 12mm}
+  html,html.big{font-size:10.5pt}
+  body{background:#fff;color:#000}
+  .tools,nav.tabs,.search,.chips,.notice,.first input,footer .nop{display:none!important}
+  .view{display:none!important}
+  body.p-dict #v-dict,body.p-proc #v-proc,body.p-cal #v-cal,body.p-first #v-first{display:block!important}
+  .term,.proc{break-inside:avoid;border-color:#999}
+  .term>summary::after,.proc>summary::after{content:""}
+  .tb,.steps,.proc .warn,.proc .meta{display:block!important}
+  .steps{display:block}
+  .cal{display:block}.mon{break-inside:avoid;margin-bottom:8px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="top">
+    <img src="img/hello.png" alt="굿균" width="72">
+    <div>
+      <h1>어서와, 자활은 처음이지?</h1>
+      <p class="sub">자활 신입 실무자 안내서 — 어려운 말을 쉬운 말로, 절차는 순서대로</p>
+    </div>
+    <div class="tools">
+      <button class="btn" id="btnBig" type="button">가 크게</button>
+      <button class="btn" id="btnPrint" type="button">인쇄</button>
+    </div>
+  </header>
+
+  <nav class="tabs" id="tabs">
+    <button data-v="dict" class="on">📖 쉬운 말 사전</button>
+    <button data-v="proc">🧭 업무 절차</button>
+    <button data-v="cal">📅 한 해 달력</button>
+    <button data-v="first">✅ 첫 주 체크</button>
+    <button data-v="about">ℹ️ 안내</button>
+  </nav>
+
+  <div class="notice">
+    <img src="img/think.png" alt="">
+    <p><b>참고용이에요.</b> 쉬운 말로 큰 틀을 설명한 것이라, 실제 처리는 그해 지침·법령과 우리 센터 규정, 세무사·노무법인·광역자활센터 확인이 먼저예요. <b>「기관마다 달라요」</b> 표시는 센터 형태에 따라 다른 부분이에요. 숫자·날짜는 <b id="yearTag"></b>년 기준.</p>
+  </div>
+
+  <!-- 사전 -->
+  <section class="view on" id="v-dict">
+    <div class="search" style="margin-top:14px"><input id="q" type="search" placeholder="낱말이나 궁금한 말을 적어 보세요 (예: 상실, 부가세, 월차, 전결)" autocomplete="off"><button class="btn" id="btnClearQ" type="button">지우기</button></div>
+    <div class="chips" id="cats"></div>
+    <p class="cnt" id="cnt"></p>
+    <div id="terms"></div>
+  </section>
+
+  <!-- 절차 -->
+  <section class="view" id="v-proc">
+    <p class="sub" style="margin:4px 0 10px">자주 막히는 일을 순서대로 적었어요. 우리 센터 방식이 다르면 센터 방식이 우선이에요.</p>
+    <div id="procs"></div>
+  </section>
+
+  <!-- 달력 -->
+  <section class="view" id="v-cal">
+    <p class="sub" style="margin:4px 0 10px">달마다 챙길 것. 날짜가 주말·공휴일이면 보통 다음 평일까지예요. 세무사·노무법인에 맡긴 일도 자료는 그 전에 보내야 해요.</p>
+    <div class="cal" id="cal"></div>
+  </section>
+
+  <!-- 첫 주 -->
+  <section class="view" id="v-first">
+    <p class="sub" style="margin:4px 0 10px">처음 일주일 동안 챙기면 좋은 것. 체크한 내용은 이 브라우저에만 남아요.</p>
+    <div class="prog"><i id="prog"></i></div>
+    <ul class="first" id="first"></ul>
+    <button class="btn" id="btnFirstReset" type="button" style="margin-top:8px">체크 모두 지우기</button>
+  </section>
+
+  <!-- 안내 -->
+  <section class="view about" id="v-about">
+    <h2 style="font-size:1.2rem;margin:4px 0 8px">이 안내서는</h2>
+    <p>사회복지를 전공하고 자활센터에 처음 온 실무자가 가장 막히는 곳 — 수급 제도, 회계, 세무, 노무 — 의 말과 절차를 <b>초등학생도 읽을 수 있는 말</b>로 풀어 둔 것이에요. 자활전문강사 김태균이 현장 경험으로 만들었어요.</p>
+    <ul>
+      <li><b>쉬운 말 사전</b>: 낱말마다 쉬운 뜻 → 자활센터에서는 → 자주 하는 실수 → 근거. 찾기 칸에 아무 말이나 적으면 돼요.</li>
+      <li><b>업무 절차</b>: 4대보험 취득·상실, 실업급여 안내, 부가세, 원천세·연말정산, 근로장려금, 종사자 입·퇴사, 산재.</li>
+      <li><b>한 해 달력</b>: 달마다 신고·보고 마감. <b>첫 주 체크</b>: 신입 첫 주에 챙길 것.</li>
+      <li><b>저장하지 않아요.</b> 서버가 없고, 첫 주 체크만 이 브라우저에 남아요.</li>
+      <li><b>근거</b>: 『2026년 자활사업 안내』(보건복지부), 국세청·고용24·4대사회보험 정보연계센터·찾기쉬운 생활법령 안내, 사회복지법인 재무·회계 규칙. 쪽수는 지침에 인쇄된 쪽.</li>
+      <li><b>해마다 고쳐요.</b> 날짜·금액·요율은 바뀌어요. 틀린 곳이나 더 넣었으면 하는 말이 있으면 알려 주세요.</li>
+    </ul>
+    <p>같이 쓰면 좋은 도구: <a href="https://jahwalktg.github.io/jahwal-tools/" target="_blank" rel="noopener">지역자활센터 업무 도구</a> · <a href="https://jahwalktg.github.io/gukgicho/" target="_blank" rel="noopener">국기초 가늠표</a> · <a href="https://jahwalktg.github.io/gukgicho/asset/" target="_blank" rel="noopener">자산형성 길잡이</a></p>
+  </section>
+
+  <footer>
+    <p>어서와, 자활은 처음이지? · 자활 신입 실무자 안내서 · 참고용 · 확정은 지침·법령·센터 규정·담당 기관</p>
+    <p>만든 사람: 자활전문강사 김태균 · 의견 <a href="mailto:jahwalktg@gmail.com?subject=%EC%96%B4%EC%84%9C%EC%99%80%20%EC%9E%90%ED%99%9C%20%EC%9D%98%EA%B2%AC">jahwalktg@gmail.com</a></p>
+  </footer>
+</div>
+
+<script src="data.js?v=1"></script>
+<script>
+(function(){
+  'use strict';
+  var D=window.JS_DATA,$=function(id){return document.getElementById(id);};
+  $('yearTag').textContent=D.year;
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  var CAT={};D.cats.forEach(function(c){CAT[c[0]]=c;});
+
+  /* 탭 */
+  var cur='dict';
+  function go(v,push){
+    cur=v;
+    document.querySelectorAll('#tabs button').forEach(function(b){b.classList.toggle('on',b.dataset.v===v);});
+    document.querySelectorAll('.view').forEach(function(s){s.classList.toggle('on',s.id==='v-'+v);});
+    if(push!==false){try{history.replaceState(null,'','#'+v+(v==='dict'&&$('q').value?'='+encodeURIComponent($('q').value):''));}catch(e){}}
+    window.scrollTo(0,0);
+  }
+  $('tabs').addEventListener('click',function(e){var b=e.target.closest('button');if(b)go(b.dataset.v);});
+
+  /* 사전 */
+  var cat='all';
+  var chips=$('cats');
+  [['all','전체']].concat(D.cats.map(function(c){return [c[0],c[2]+' '+c[1]];})).forEach(function(c){
+    var b=document.createElement('button');b.type='button';b.className='chip'+(c[0]==='all'?' on':'');b.textContent=c[1];b.dataset.c=c[0];
+    b.onclick=function(){cat=c[0];chips.querySelectorAll('.chip').forEach(function(x){x.classList.toggle('on',x.dataset.c===cat);});renderTerms();};
+    chips.appendChild(b);
+  });
+  function norm(s){return String(s||'').toLowerCase().replace(/\s+/g,'');}
+  function hl(html,q){
+    if(!q)return html;
+    try{var re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');return html.replace(/>([^<]+)</g,function(m,t){return '>'+t.replace(re,'<mark>$1</mark>')+'<';}).replace(/^([^<]+)/,function(t){return t.replace(re,'<mark>$1</mark>');});}catch(e){return html;}
+  }
+  function termHTML(t,q,open){
+    var c=CAT[t.c];
+    var h='<details class="term"'+(open?' open':'')+'><summary><span class="cat">'+c[2]+' '+c[1]+'</span><span class="w">'+hl(esc(t.w),q)+'</span>'+(t.v?'<span class="v">기관마다 달라요</span>':'')+'</summary><div class="tb">';
+    h+='<span class="lab">쉬운 뜻</span><p>'+hl(t.e,q)+'</p>';
+    if(t.j)h+='<span class="lab">자활센터에서는</span><p>'+hl(t.j,q)+'</p>';
+    if(t.m)h+='<span class="lab">자주 하는 실수</span><p class="mis">'+hl(t.m,q)+'</p>';
+    if(t.r)h+='<p class="ref">근거·참고: '+esc(t.r)+'</p>';
+    if(t.link)h+='<a class="lk" href="'+t.link[0]+'" target="_blank" rel="noopener">'+esc(t.link[1])+' →</a>';
+    return h+'</div></details>';
+  }
+  function renderTerms(){
+    var q=$('q').value.trim(),nq=norm(q),box=$('terms'),list=D.terms.filter(function(t){
+      if(cat!=='all'&&t.c!==cat)return false;
+      if(!nq)return true;
+      return norm(t.w+' '+t.k+' '+t.e.replace(/<[^>]+>/g,'')+' '+(t.j||'').replace(/<[^>]+>/g,'')).indexOf(nq)>=0;
+    });
+    // 낱말에 맞는 것을 앞으로
+    if(nq)list.sort(function(a,b){var A=norm(a.w+a.k).indexOf(nq)>=0?0:1,B=norm(b.w+b.k).indexOf(nq)>=0?0:1;return A-B;});
+    $('cnt').textContent=(nq?'「'+q+'」 ':'')+list.length+'개'+(nq?' (낱말 자체에 맞는 것이 위에 와요)':'');
+    box.innerHTML=list.length?list.map(function(t){return termHTML(t,q,!!nq&&list.length<=6);}).join(''):'<div class="empty">찾는 말이 없어요. 다른 말로 적어 보거나, 아래 의견으로 알려 주세요.</div>';
+  }
+  var tmr;$('q').addEventListener('input',function(){clearTimeout(tmr);tmr=setTimeout(function(){renderTerms();try{history.replaceState(null,'','#dict'+($('q').value?'='+encodeURIComponent($('q').value):''));}catch(e){}},120);});
+  $('btnClearQ').onclick=function(){$('q').value='';renderTerms();$('q').focus();};
+
+  /* 절차 */
+  $('procs').innerHTML=D.procs.map(function(p){
+    var h='<details class="proc" id="p-'+p.id+'"><summary>'+esc(p.t)+(p.v?' <span class="v" style="font-size:.7rem;font-weight:700;padding:1px 7px;border-radius:999px;background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-line)">기관마다 달라요</span>':'')+'</summary>';
+    h+='<div class="meta"><span>👤 '+esc(p.who)+'</span><span>🗓 '+esc(p.when)+'</span></div><ol class="steps">';
+    p.steps.forEach(function(s){h+='<li><div><b>'+esc(s[0])+'</b><span>'+esc(s[1])+'</span></div></li>';});
+    h+='</ol>';
+    if(p.warn)h+='<p class="warn">⚠ '+esc(p.warn)+'</p>';
+    if(p.link)h+='<p style="margin:0 14px 14px"><a href="'+p.link[0]+'" target="_blank" rel="noopener">'+esc(p.link[1])+' →</a></p>';
+    return h+'</details>';
+  }).join('');
+
+  /* 달력 */
+  var nowM=new Date().getMonth()+1;
+  $('cal').innerHTML=D.cal.map(function(m){
+    var isAll=m.m==='매월',mm=parseInt(m.m,10);
+    return '<div class="mon'+(isAll?' all':'')+(mm===nowM?' now':'')+'"><h3>'+esc(m.m)+(mm===nowM?' <small style="color:var(--blue);font-size:.8rem">이번 달</small>':'')+'</h3><ul>'+m.items.map(function(i){return '<li><b>'+esc(i[0])+'</b><span>'+esc(i[1])+'</span></li>';}).join('')+'</ul></div>';
+  }).join('');
+
+  /* 첫 주 */
+  var FK='jahwal-start.first.v1',done={};try{done=JSON.parse(localStorage.getItem(FK)||'{}')||{};}catch(e){}
+  function renderFirst(){
+    var ul=$('first');ul.innerHTML='';var n=0;
+    D.first.forEach(function(f,i){
+      var li=document.createElement('li');if(done[i]){li.className='done';n++;}
+      var cb=document.createElement('input');cb.type='checkbox';cb.checked=!!done[i];cb.setAttribute('aria-label',f[1]);
+      cb.onchange=function(){if(cb.checked)done[i]=1;else delete done[i];try{localStorage.setItem(FK,JSON.stringify(done));}catch(e){}renderFirst();};
+      var lab=document.createElement('label');lab.style.cursor='pointer';lab.innerHTML='<span class="g">'+esc(f[0])+'</span>'+esc(f[1]);
+      lab.onclick=function(){cb.click();};
+      li.appendChild(cb);li.appendChild(lab);ul.appendChild(li);
+    });
+    $('prog').style.width=Math.round(n/D.first.length*100)+'%';
+  }
+  $('btnFirstReset').onclick=function(){if(!confirm('체크를 모두 지울까요?'))return;done={};try{localStorage.removeItem(FK);}catch(e){}renderFirst();};
+  renderFirst();
+
+  /* 공통 단추 */
+  var big=false;$('btnBig').onclick=function(){big=!big;document.documentElement.classList.toggle('big',big);this.textContent=big?'가 보통':'가 크게';};
+  $('btnPrint').onclick=function(){
+    document.body.className='p-'+cur;
+    var opened=[];document.querySelectorAll('.term,.proc').forEach(function(d){opened.push(d.open);d.open=true;});
+    window.print();
+    setTimeout(function(){document.body.className='';document.querySelectorAll('.term,.proc').forEach(function(d,i){d.open=opened[i];});},500);
+  };
+
+  /* 주소로 열기: #proc, #cal, #first, #dict=낱말, #p-acq */
+  var h=decodeURIComponent(location.hash.slice(1)||'');
+  if(/^p-/.test(h)){go('proc',false);var d=$(h);if(d){d.open=true;setTimeout(function(){d.scrollIntoView({block:'start'});},50);}}
+  else if(/^dict=/.test(h)){$('q').value=h.slice(5);go('dict',false);}
+  else if(['proc','cal','first','about'].indexOf(h)>=0)go(h,false);
+  renderTerms();
+})();
+</script>
+</body>
+</html>
