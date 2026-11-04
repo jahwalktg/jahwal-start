@@ -139,6 +139,24 @@ footer p{margin:2px 0}
   .steps{display:block}
   .cal{display:block}.mon{break-inside:avoid;margin-bottom:8px}
 }
+
+/* 첫 접속 필수 안내 */
+.gt-back{position:fixed;inset:0;z-index:100;background:rgba(10,20,45,.72);display:flex;align-items:center;justify-content:center;padding:14px}
+.gt-back[hidden]{display:none}
+.gt-box{width:min(560px,100%);max-height:100%;overflow:auto;background:var(--surface);color:var(--text);border:3px solid var(--amber-line);border-radius:18px;padding:20px 20px 18px;box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.gt-box h2{margin:0 0 4px;font-size:1.35rem;line-height:1.35;color:var(--amber)}
+.gt-box .gt-sub{margin:0 0 12px;font-weight:700}
+.gt-box ul{margin:0 0 12px;padding:0;list-style:none;display:grid;gap:8px}
+.gt-box li{padding:9px 12px;border-radius:10px;background:var(--bg);line-height:1.6;font-size:.95rem}
+.gt-box li.key{background:var(--amber-bg);border:1.5px solid var(--amber-line)}
+.gt-tag{display:inline-block;font-size:.8rem;font-weight:800;padding:1px 9px;border-radius:999px;background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-line);white-space:nowrap}
+.gt-check{display:flex;gap:10px;align-items:center;padding:10px 12px;margin:0 0 10px;border:1.5px solid var(--line);border-radius:10px;font-weight:700;cursor:pointer;line-height:1.45}
+.gt-check input{flex:none;width:22px;height:22px;margin:0}
+.gt-ok{width:100%;min-height:54px;border:0;border-radius:12px;background:var(--blue);color:#fff;font-size:1.05rem;font-weight:800;cursor:pointer}
+.gt-ok:disabled{opacity:.4;cursor:not-allowed}
+.gt-again{background:none;border:0;padding:0;color:inherit;text-decoration:underline;font:inherit;cursor:pointer}
+.vnote{margin:10px 0 0;padding:8px 12px;border-radius:10px;background:var(--amber-bg);border:1.5px solid var(--amber-line);font-size:.9rem;line-height:1.55;font-weight:600}
+@media print{.gt-back,.gt-again{display:none!important}}
 </style>
 </head>
 <body>
@@ -165,7 +183,7 @@ footer p{margin:2px 0}
 
   <div class="notice">
     <img src="img/think.png" alt="">
-    <p><b>참고용이에요.</b> 쉬운 말로 큰 틀을 설명한 것이라, 실제 처리는 그해 지침·법령과 우리 센터 규정, 세무사·노무법인·광역자활센터 확인이 먼저예요. <b>「기관마다 달라요」</b> 표시는 센터 형태에 따라 다른 부분이에요. 숫자·날짜는 <b id="yearTag"></b>년 기준.</p>
+    <p><b>정답이 아니라 참고용이에요.</b> 쉬운 말로 큰 틀을 설명한 것이라, 실제 처리는 그해 지침·법령과 우리 센터 규정, 세무사·노무법인·광역자활센터 확인이 먼저예요. <b>「기관마다 달라요」</b> 표시는 센터 형태에 따라 다른 부분이에요. 숫자·날짜는 <b id="yearTag"></b>년 기준.</p>
   </div>
 
   <!-- 사전 -->
@@ -206,6 +224,7 @@ footer p{margin:2px 0}
       <li><b>한 해 달력</b>: 달마다 신고·보고 마감. <b>첫 주 체크</b>: 신입 첫 주에 챙길 것.</li>
       <li><b>저장하지 않아요.</b> 서버가 없고, 첫 주 체크만 이 브라우저에 남아요.</li>
       <li><b>근거</b>: 『2026년 자활사업 안내』(보건복지부), 국세청·고용24·4대사회보험 정보연계센터·찾기쉬운 생활법령 안내, 사회복지법인 재무·회계 규칙. 쪽수는 지침에 인쇄된 쪽.</li>
+      <li><b>참고용이에요.</b> 정확한 내용은 원문·관계기관·전문가에게 꼭 확인하세요. <button class="gt-again" id="gtAgain" type="button">첫 안내 다시 보기</button></li>
       <li><b>해마다 고쳐요.</b> 날짜·금액·요율은 바뀌어요. 틀린 곳이나 더 넣었으면 하는 말이 있으면 알려 주세요.</li>
     </ul>
     <p>같이 쓰면 좋은 도구: <a href="https://jahwalktg.github.io/jahwal-tools/" target="_blank" rel="noopener">지역자활센터 업무 도구</a> · <a href="https://jahwalktg.github.io/gukgicho/" target="_blank" rel="noopener">국기초 가늠표</a> · <a href="https://jahwalktg.github.io/gukgicho/asset/" target="_blank" rel="noopener">자산형성 길잡이</a></p>
@@ -217,7 +236,7 @@ footer p{margin:2px 0}
   </footer>
 </div>
 
-<script src="data.js?v=1"></script>
+<script src="data.js?v=2"></script>
 <script>
 (function(){
   'use strict';
@@ -256,6 +275,7 @@ footer p{margin:2px 0}
     h+='<span class="lab">쉬운 뜻</span><p>'+hl(t.e,q)+'</p>';
     if(t.j)h+='<span class="lab">자활센터에서는</span><p>'+hl(t.j,q)+'</p>';
     if(t.m)h+='<span class="lab">자주 하는 실수</span><p class="mis">'+hl(t.m,q)+'</p>';
+    if(t.v)h+='<p class="vnote">⚠ 기관마다 달라요: 이 설명대로 처리하기 전에 우리 센터 규정과 회계·세무사·노무사에게 꼭 먼저 확인하세요.</p>';
     if(t.r)h+='<p class="ref">근거·참고: '+esc(t.r)+'</p>';
     if(t.link)h+='<a class="lk" href="'+t.link[0]+'" target="_blank" rel="noopener">'+esc(t.link[1])+' →</a>';
     return h+'</div></details>';
@@ -280,6 +300,7 @@ footer p{margin:2px 0}
     h+='<div class="meta"><span>👤 '+esc(p.who)+'</span><span>🗓 '+esc(p.when)+'</span></div>'+(p.intro||'')+'<ol class="steps">';
     p.steps.forEach(function(s){h+='<li><div><b>'+esc(s[0])+'</b><span>'+esc(s[1])+'</span></div></li>';});
     h+='</ol>';
+    if(p.v)h+='<p class="vnote" style="margin:10px 14px 0">⚠ 기관마다 달라요: 이 설명대로 처리하기 전에 우리 센터 규정과 회계·세무사·노무사에게 꼭 먼저 확인하세요.</p>';
     if(p.warn)h+='<p class="warn">⚠ '+esc(p.warn)+'</p>';
     if(p.link)h+='<p style="margin:0 14px 14px"><a href="'+p.link[0]+'" target="_blank" rel="noopener">'+esc(p.link[1])+' →</a></p>';
     return h+'</details>';
@@ -324,6 +345,33 @@ footer p{margin:2px 0}
   else if(/^dict=/.test(h)){$('q').value=h.slice(5);go('dict',false);}
   else if(['proc','cal','first','about'].indexOf(h)>=0)go(h,false);
   renderTerms();
+})();
+</script>
+<div class="gt-back" id="gtBack" hidden role="dialog" aria-modal="true" aria-labelledby="gtT">
+  <div class="gt-box">
+    <h2 id="gtT">⚠ 쓰기 전에 꼭 읽어 주세요</h2>
+    <p class="gt-sub">이 안내서는 정답이 아니라 참고 자료예요.</p>
+    <ul>
+      <li>지침·법령을 쉬운 말로 줄여서 옮겼어요. 빠진 내용이 있고 틀릴 수 있으며, 기준은 해마다 바뀌어요.</li>
+      <li><b>정확한 내용은 반드시</b> 원문(지침·법령), 관계기관(시군구·국세청·각 공단·고용센터), 전문가(세무사·노무사)에게 확인하세요.</li>
+      <li class="key"><span class="gt-tag">기관마다 달라요</span> 표시는 <b>특히 더 확인이 필요해요.</b> 센터의 형태·규정·세무 처리에 따라 답이 달라요. 이 표시가 있으면 이 안내대로 처리하지 말고 우리 센터 규정과 회계·세무사·노무사에게 먼저 확인하세요.</li>
+      <li>참여자나 다른 사람에게 그대로 안내하기 전에도 확인해 주세요. 판단과 결과의 책임은 쓰는 분과 센터에 있어요.</li>
+    </ul>
+    <label class="gt-check"><input type="checkbox" id="gtChk"> 읽었습니다. 참고용으로 쓰고 꼭 확인하겠습니다.</label>
+    <button class="gt-ok" id="gtOk" type="button" disabled>확인하고 시작하기</button>
+  </div>
+</div>
+<script>
+/* 첫 접속 필수 안내: 체크하고 눌러야 쓸 수 있음. 이 브라우저에 확인 표시만 저장. 주소에 ?gate 를 붙이거나 맨 아래 단추로 다시 볼 수 있음 */
+(function(){
+  var KEY='jahwal-start.gate.v1',back=document.getElementById('gtBack'),ok=document.getElementById('gtOk'),chk=document.getElementById('gtChk');
+  var seen=false;try{seen=!!localStorage.getItem(KEY);}catch(e){}
+  function show(){back.hidden=false;document.documentElement.style.overflow='hidden';chk.checked=false;ok.disabled=true;chk.focus();}
+  function hide(){back.hidden=true;document.documentElement.style.overflow='';}
+  chk.addEventListener('change',function(){ok.disabled=!chk.checked;});
+  ok.addEventListener('click',function(){try{localStorage.setItem(KEY,new Date().toISOString().slice(0,10));}catch(e){}hide();});
+  var again=document.getElementById('gtAgain');if(again)again.addEventListener('click',show);
+  if(!seen||/[?&]gate\b/.test(location.search))show();
 })();
 </script>
 </body>
