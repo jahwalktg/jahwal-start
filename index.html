@@ -88,6 +88,16 @@ mark{background:#FFE88A;color:#1A2B50;padding:0 2px;border-radius:3px}
 .steps li::before{counter-increment:s;content:counter(s);width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;font-weight:800;font-size:.85rem;display:grid;place-items:center;margin-top:2px}
 .steps b{display:block}
 .steps span{font-size:.92rem;color:var(--text)}
+.yep{margin:10px 14px 0}
+.yep p{margin:0 0 8px}
+.yep .big{padding:10px 12px;border-radius:10px;background:var(--soft);line-height:1.65}
+.yep h4{margin:14px 0 6px;font-size:.98rem}
+.ybl{width:100%;border-collapse:collapse;font-size:.9rem}
+.ybl th,.ybl td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+.ybl th{background:var(--soft)}
+.ybl.num td:not(:first-child),.ybl.num th:not(:first-child){text-align:right;white-space:nowrap}
+.yep .fine{margin-top:6px;font-size:.8rem;color:var(--muted)}
+.yep .say{padding:10px 12px;border-left:4px solid var(--blue);background:var(--surface);border-radius:0 10px 10px 0;line-height:1.7}
 .proc .warn{margin:10px 14px 14px;padding:8px 12px;border-radius:10px;background:var(--amber-bg);border:1px solid var(--amber-line);font-size:.9rem}
 /* 달력 */
 .cal{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
@@ -187,7 +197,7 @@ footer p{margin:2px 0}
     <p>사회복지를 전공하고 자활센터에 처음 온 실무자가 가장 막히는 곳 — 수급 제도, 회계, 세무, 노무 — 의 말과 절차를 <b>초등학생도 읽을 수 있는 말</b>로 풀어 둔 것이에요. 자활전문강사 김태균이 현장 경험으로 만들었어요.</p>
     <ul>
       <li><b>쉬운 말 사전</b>: 낱말마다 쉬운 뜻 → 자활센터에서는 → 자주 하는 실수 → 근거. 찾기 칸에 아무 말이나 적으면 돼요.</li>
-      <li><b>업무 절차</b>: 4대보험 취득·상실, 실업급여 안내, 부가세, 원천세·연말정산, 근로장려금, 종사자 입·퇴사, 산재.</li>
+      <li><b>업무 절차</b>: 4대보험 취득·상실, 실업급여 안내, 부가세, 원천세·연말정산, 참여자 연말정산, 근로장려금, 종사자 입·퇴사, 산재.</li>
       <li><b>한 해 달력</b>: 달마다 신고·보고 마감. <b>첫 주 체크</b>: 신입 첫 주에 챙길 것.</li>
       <li><b>저장하지 않아요.</b> 서버가 없고, 첫 주 체크만 이 브라우저에 남아요.</li>
       <li><b>근거</b>: 『2026년 자활사업 안내』(보건복지부), 국세청·고용24·4대사회보험 정보연계센터·찾기쉬운 생활법령 안내, 사회복지법인 재무·회계 규칙. 쪽수는 지침에 인쇄된 쪽.</li>
@@ -262,7 +272,7 @@ footer p{margin:2px 0}
   /* 절차 */
   $('procs').innerHTML=D.procs.map(function(p){
     var h='<details class="proc" id="p-'+p.id+'"><summary>'+esc(p.t)+(p.v?' <span class="v" style="font-size:.7rem;font-weight:700;padding:1px 7px;border-radius:999px;background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-line)">기관마다 달라요</span>':'')+'</summary>';
-    h+='<div class="meta"><span>👤 '+esc(p.who)+'</span><span>🗓 '+esc(p.when)+'</span></div><ol class="steps">';
+    h+='<div class="meta"><span>👤 '+esc(p.who)+'</span><span>🗓 '+esc(p.when)+'</span></div>'+(p.intro||'')+'<ol class="steps">';
     p.steps.forEach(function(s){h+='<li><div><b>'+esc(s[0])+'</b><span>'+esc(s[1])+'</span></div></li>';});
     h+='</ol>';
     if(p.warn)h+='<p class="warn">⚠ '+esc(p.warn)+'</p>';
